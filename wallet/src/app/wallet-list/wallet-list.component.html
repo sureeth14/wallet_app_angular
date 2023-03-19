@@ -1,0 +1,24 @@
+<h2> Wallet List </h2>
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <th scope="col"> ID      </th>
+    <th scope="col"> Name    </th>
+    <th scope="col"> Balance </th>
+    <th scope="col"> Actions </th>
+  </tr>
+  </thead>
+
+  <tbody>
+ <tr *ngFor="let wallet of wallets">
+   <td>{{ wallet.id }}</td>
+   <td>{{ wallet.name }}</td>
+   <td>{{ wallet.balance }}</td>
+   <td>
+     <button class="btn btn-success" (click)="updateWalletRecord(wallet.id)"  > Update </button>
+     <button class="btn btn-danger" style="margin-left: 10px" (click)="deleteWallet(wallet.id)"  > Delete </button>
+   </td>
+
+ </tr>
+  </tbody>
+</table>
