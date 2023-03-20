@@ -3,15 +3,31 @@
   <form (ngSubmit)="onSubmit()">
 
     <div class="form-group">
-      <label>ID</label>
+      <label for="id">ID</label>
       <input type="number" class="form-control" id="id"
-      [(ngModel)] = "wallet.id" name = "id">
+             required minlength="1"
+             [(ngModel)] = "wallet.id" name = "id" >
+
     </div>
 
     <div class="form-group">
       <label>Name</label>
-      <input type="text" class="form-control" id ="name"
-             [(ngModel)] = "wallet.name" name = "name">
+      <input type="text" id="name" name="name" class="form-control"
+             required minlength="4"
+             [(ngModel)]="wallet.name" #name="ngModel">
+
+      <div *ngIf="name.invalid && (name.dirty || name.touched)"
+           class="alert">
+
+        <div *ngIf="name.errors?.['required']">
+          Name is required.
+        </div>
+        <div *ngIf="name.errors?.['minlength']">
+          Name must be at least 4 characters long.
+        </div>
+
+      </div>
+
     </div>
 
     <div class="form-group">
